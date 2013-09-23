@@ -1,0 +1,19 @@
+# === Editor files
+
+*.swo
+*.swp
+
+# === ctags
+
+tags
+
+# OS Generated files
+
+.DS_Store
+.DS_Store?
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# === Local Dev Files - stuff I use but don't expose to team
+Spring.rb

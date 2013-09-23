@@ -1,0 +1,10 @@
+[user]
+	name = Tony Semana
+	email = tony.semana@gmail.com
+[github]
+	user = tsemana
+	token = 89cdf9b274692e64f45c16e8417f1eaf
+[color]
+	ui = true
+[core]
+	excludesfile = /Users/Tony/.gitignore_global
