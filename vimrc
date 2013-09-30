@@ -1,1 +1,1 @@
-/Users/Tony/.vim/vimrc
+/Users/tony/.vim/vimrc
