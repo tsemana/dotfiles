@@ -37,9 +37,7 @@ source ~/.git-flow-completion.zsh
 
 # Customize to your needs...
 
-export PATH=/opt/local/bin:/opt/local/sbin:$PATH
-
-export PATH=/usr/local/bin:$PATH
+export PATH=/usr/local/bin:/usr/bin:/usr/sbin:$PATH
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 PATH=$PATH:$HOME/src/ok/bin # Path to ok script
