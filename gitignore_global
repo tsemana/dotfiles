@@ -2,10 +2,24 @@
 
 *.swo
 *.swp
+*.sw*
+*.idea
+
+# === ctags
+
+*.tern-project
 
 # === ctags
 
 tags
+
+# === rvmrc
+
+.rvmrc
+
+# === nvmrc
+
+.nvmrc
 
 # OS Generated files
 

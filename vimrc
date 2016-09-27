@@ -57,7 +57,7 @@ set cmdheight=2
 set switchbuf=useopen
 set numberwidth=5
 set showtabline=2
-set winwidth=150
+set winwidth=130
 set winheight=6
 set wmh=6
 
@@ -130,7 +130,7 @@ nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 
 " Insert a hash rocket with <c-l>l
-imap <c-l>l <space>=><space>
+imap <c-l>l <space>=>blah<space>
 
 
 " Can't be bothered to understand ESC vs <c-c> in insert mode
@@ -156,7 +156,7 @@ inoremap <c-l> <right>
 inoremap <c-h> <left>
 
 "yy D and d goes to clipboard
-set clipboard=unnamed
+set clipboard=unnamedplus
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ARROW KEYS ARE UNACCEPTABLE
@@ -316,24 +316,25 @@ function! RunTests(filename)
   :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
   if match(a:filename, '\.feature$') != -1
     " standard - no spring
-    " exec ":!time bundle exec cucumber -r features " . a:filename
+    exec ":!time bundle exec cucumber -r features " . a:filename
+    "
     " with spring
-    exec ":!time spring cucumber -r features " . a:filename
+    " exec ":!time spring cucumber -r features " . a:filename
   else
     if filereadable("script/test")
       exec ":!script/test " . a:filename
 
     " with spring
-    elseif filereadable("Gemfile")
-      exec ":!time spring rspec --color --format documentation " . a:filename
-    else
-      exec ":!time spring rspec --color --format documentation " . a:filename
+    " elseif filereadable("Gemfile")
+    "   exec ":!time spring rspec --color --format documentation " . a:filename
+    " else
+    "   exec ":!time spring rspec --color --format documentation " . a:filename
 
     " without spring
-    " elseif filereadable("Gemfile")
-    "   exec ":!time bundle exec rspec --color --format documentation " . a:filename
-    " else
-    "   exec ":!time rspec --color --format documentation " . a:filename
+    elseif filereadable("Gemfile")
+      exec ":!time bundle exec rspec --color --format documentation " . a:filename
+    else
+      exec ":!time rspec --color --format documentation " . a:filename
     end
   end
 endfunction
@@ -381,3 +382,37 @@ map <leader>w :w\|:!script/features --profile wip<cr>
 imap <c-u> <esc><leader>t
 
 " Regenerate tags
+"
+"
+"
+" JSHint
+map <leader>h :JSHint<cr>
+
+" Insert console.log template
+map <leader>ll oconsole.log(">>>", ""<right>; // Remove this before commit<esc>31hi
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" SWITCH BETWEEN HTML AND JS CODE (METEOR)
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+function! OpenMeteorAlternate()
+  let new_file = AlternateMeteorForCurrentFile()
+  exec ':e ' . new_file
+endfunction
+
+function! AlternateMeteorForCurrentFile()
+  let current_file = expand("%")
+  let new_file = current_file
+  let in_js = match(current_file, '\.js$') != -1
+  let going_to_js = !in_js
+  if going_to_js
+    let new_file = substitute(new_file, '\.html$', '.js', '')
+  else
+    let new_file = substitute(new_file, '\.js$', '.html', '')
+  endif
+  return new_file
+endfunction
+
+nnoremap <leader>j :call OpenMeteorAlternate()<cr> 
+

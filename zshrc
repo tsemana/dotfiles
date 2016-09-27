@@ -33,14 +33,13 @@ alias vi="vim"
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
-source ~/.git-flow-completion.zsh
 
 # Customize to your needs...
 
 export PATH=/usr/local/bin:/usr/bin:/usr/sbin:$PATH
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-PATH=$PATH:$HOME/src/ok/bin # Path to ok script
+PATH=$PATH:$HOME/ok/bin # Path to ok script
 
 # GC Tuning from
 # http://labs.goclio.com/tuning-ruby-garbage-collection-for-rspec/
